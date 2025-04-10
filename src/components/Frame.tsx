@@ -70,7 +70,7 @@ function QuizCard() {
 
   if (isDone) {
     return (
-      <Card className="w-[400px]">
+      <Card className="w-[95%] max-w-[400px] mx-auto">
         <CardHeader>
           <CardTitle>Quiz abgeschlossen! 🎉</CardTitle>
           <CardDescription className="text-green-600">
@@ -95,7 +95,7 @@ function QuizCard() {
   }
 
   return (
-    <Card className="w-[400px]">
+    <Card className="w-[95%] max-w-[400px] mx-auto">
       <CardHeader>
         <CardTitle>HundeQuiz</CardTitle>
         <CardDescription>
@@ -103,7 +103,7 @@ function QuizCard() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <Label className="text-3xl font-bold mb-4 text-center">
+        <Label className="text-2xl md:text-3xl font-bold mb-2 md:mb-4 text-center break-words">
           {QUIZ_DATA[currentQuestion].question}
         </Label>
         <div className="flex flex-col gap-2">
@@ -112,7 +112,7 @@ function QuizCard() {
               key={option}
               onClick={() => handleAnswer(option)}
               disabled={!!selectedAnswer}
-              className={`p-3 text-left rounded-md transition-all
+              className={`px-4 py-3 md:p-3 text-base md:text-inherit text-left rounded-md transition-all
                 ${selectedAnswer 
                   ? option === QUIZ_DATA[currentQuestion].correctAnswer
                     ? "bg-green-500 text-white ring-2 ring-green-600"
@@ -140,7 +140,7 @@ export default function Frame() {
   }
 
   return (
-    <div className="w-full mx-auto py-2 px-2 flex justify-center">
+    <div className="w-full max-w-screen-sm md:max-w-screen-md mx-auto py-4 px-4 md:px-2 flex justify-center min-h-screen md:min-h-0">
       <QuizCard />
     </div>
   );
