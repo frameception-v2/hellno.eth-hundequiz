@@ -97,7 +97,7 @@ function QuizCard() {
   return (
     <Card className="w-[400px]">
       <CardHeader>
-        <CardTitle>Hunderassen Quiz</CardTitle>
+        <CardTitle>HundeQuiz</CardTitle>
         <CardDescription>
           Frage {currentQuestion + 1} von {QUIZ_DATA.length}
         </CardDescription>
