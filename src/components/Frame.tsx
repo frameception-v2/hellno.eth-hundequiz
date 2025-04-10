@@ -16,7 +16,6 @@ interface QuizQuestion {
   question: string;
   options: string[];
   correctAnswer: string;
-  image: string;
 }
 
 const QUIZ_DATA: QuizQuestion[] = [
@@ -24,31 +23,26 @@ const QUIZ_DATA: QuizQuestion[] = [
     question: "Welche Hunderasse ist bekannt für ihre charakteristische schwarze Zunge?",
     options: ["Dalmatiner", "Chow Chow", "Dackel", "Golden Retriever"],
     correctAnswer: "Chow Chow",
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/ChowChow2Szilussi.jpg"
   },
   {
     question: "Welche Rasse wird oft als 'Wiener Hund' bezeichnet?",
     options: ["Beagle", "Dackel", "Pudel", "Shiba Inu"],
     correctAnswer: "Dackel",
-    image: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Dachshund-640.jpg"
   },
   {
     question: "Welcher Hund wurde ursprünglich für die Jagd auf Bären gezüchtet?",
     options: ["Pomeranian", "Japan Chin", "Karelischer Bärenhund", "Shih Tzu"],
     correctAnswer: "Karelischer Bärenhund",
-    image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Karelian-bear-dog_01.jpg"
   },
   {
     question: "Welche Rasse ist der kleinste Schäferhund der Welt?",
     options: ["Deutsche Dogge", "Shetland Sheepdog", "Corgi", "Australischer Terrier"],
     correctAnswer: "Corgi",
-    image: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Welchcorgipembroke.JPG"
   },
   {
     question: "Welcher Hund hat ein faltenreiches Gesicht?",
     options: ["Shar Pei", "Border Collie", "Husky", "Pekingese"],
     correctAnswer: "Shar Pei",
-    image: "https://upload.wikimedia.org/wikipedia/commons/7/7e/SharPei.jpg"
   }
 ];
 
@@ -109,19 +103,9 @@ function QuizCard() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <div className="relative group">
-          <img 
-            src={QUIZ_DATA[currentQuestion].image}
-            alt="Hunderasse"
-            className="h-48 w-full object-cover rounded-lg transform group-hover:scale-105 transition-transform"
-          />
-          <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
-            <span className="text-white text-sm font-medium">
-              Frage {currentQuestion + 1} von {QUIZ_DATA.length}
-            </span>
-          </div>
-        </div>
-        <Label>{QUIZ_DATA[currentQuestion].question}</Label>
+        <Label className="text-3xl font-bold mb-4 text-center">
+          {QUIZ_DATA[currentQuestion].question}
+        </Label>
         <div className="flex flex-col gap-2">
           {QUIZ_DATA[currentQuestion].options.map((option) => (
             <button
