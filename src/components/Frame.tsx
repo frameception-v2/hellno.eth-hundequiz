@@ -79,9 +79,22 @@ function QuizCard() {
       <Card className="w-[400px]">
         <CardHeader>
           <CardTitle>Quiz abgeschlossen! 🎉</CardTitle>
+          <CardDescription className="text-green-600">
+            Du hast {score} von {QUIZ_DATA.length} Fragen richtig beantwortet!
+          </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Label>Ergebnis: {score} von {QUIZ_DATA.length} richtig!</Label>
+        <CardContent className="flex flex-col gap-4">
+          <div className="w-full bg-gray-100 rounded-full h-2.5">
+            <div 
+              className="bg-green-600 h-2.5 rounded-full transition-all" 
+              style={{ width: `${(score / QUIZ_DATA.length) * 100}%` }}
+            ></div>
+          </div>
+          <Label className="text-center text-sm text-gray-500">
+            {score >= 4 ? "Ausgezeichnet! 🐶" :
+             score >= 2 ? "Gute Arbeit! 🐾" : 
+             "Versuche es nochmal! 🦴"}
+          </Label>
         </CardContent>
       </Card>
     );
@@ -96,11 +109,18 @@ function QuizCard() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <img 
-          src={QUIZ_DATA[currentQuestion].image}
-          alt="Hunderasse"
-          className="h-48 w-full object-cover rounded-lg"
-        />
+        <div className="relative group">
+          <img 
+            src={QUIZ_DATA[currentQuestion].image}
+            alt="Hunderasse"
+            className="h-48 w-full object-cover rounded-lg transform group-hover:scale-105 transition-transform"
+          />
+          <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
+            <span className="text-white text-sm font-medium">
+              Frage {currentQuestion + 1} von {QUIZ_DATA.length}
+            </span>
+          </div>
+        </div>
         <Label>{QUIZ_DATA[currentQuestion].question}</Label>
         <div className="flex flex-col gap-2">
           {QUIZ_DATA[currentQuestion].options.map((option) => (
@@ -108,14 +128,15 @@ function QuizCard() {
               key={option}
               onClick={() => handleAnswer(option)}
               disabled={!!selectedAnswer}
-              className={`p-2 text-left rounded-md transition-colors
+              className={`p-3 text-left rounded-md transition-all
                 ${selectedAnswer 
                   ? option === QUIZ_DATA[currentQuestion].correctAnswer
-                    ? "bg-green-500 text-white"
+                    ? "bg-green-500 text-white ring-2 ring-green-600"
                     : option === selectedAnswer
-                    ? "bg-red-500 text-white"
-                    : "bg-gray-100"
-                  : "bg-gray-100 hover:bg-gray-200"}
+                    ? "bg-red-500 text-white ring-2 ring-red-600"
+                    : "bg-gray-100 opacity-75"
+                  : "bg-gray-100 hover:bg-gray-200 hover:ring-2 hover:ring-blue-500"}
+                ring-offset-2
               `}
             >
               {option}
