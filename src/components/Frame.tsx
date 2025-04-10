@@ -118,8 +118,8 @@ function QuizCard() {
                     ? "bg-green-500 text-white ring-2 ring-green-600"
                     : option === selectedAnswer
                     ? "bg-red-500 text-white ring-2 ring-red-600"
-                    : "bg-gray-100 opacity-75 text-gray-900 dark:text-gray-100"
-                  : "bg-gray-100 hover:bg-gray-200 hover:ring-2 hover:ring-blue-500 text-gray-900 dark:text-gray-100"}
+                    : "bg-gray-100 dark:bg-gray-800 opacity-75 text-gray-900 dark:text-gray-100"
+                  : "bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 hover:ring-2 hover:ring-blue-500 text-gray-900 dark:text-gray-100"}
                 ring-offset-2
               `}
             >
